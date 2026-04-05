@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>REVONN | The Voice-First AI Business OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#cecbff",
+                      "secondary-fixed": "#cfcdff",
+                      "surface-container-high": "#1c2025",
+                      "surface-dim": "#0c0e12",
+                      "surface-container-low": "#111417",
+                      "surface-bright": "#282c32",
+                      "on-secondary-fixed": "#2000b0",
+                      "on-tertiary-fixed": "#370500",
+                      "error": "#ff716c",
+                      "secondary-fixed-dim": "#c0bdff",
+                      "inverse-primary": "#7d5800",
+                      "outline-variant": "#46484c",
+                      "on-error": "#490006",
+                      "tertiary": "#ff7354",
+                      "error-dim": "#d7383b",
+                      "tertiary-dim": "#ff7354",
+                      "primary-dim": "#ecaa00",
+                      "secondary": "#9492ff",
+                      "primary": "#ffc964",
+                      "secondary-container": "#3323cc",
+                      "background": "#0c0e12",
+                      "surface-variant": "#22262b",
+                      "on-primary-fixed": "#392700",
+                      "on-primary-fixed-variant": "#5f4200",
+                      "on-surface-variant": "#a9abb0",
+                      "surface-container-lowest": "#000000",
+                      "primary-container": "#fcb812",
+                      "primary-fixed": "#fcb812",
+                      "on-primary-container": "#533a00",
+                      "tertiary-container": "#fb5430",
+                      "primary-fixed-dim": "#ecaa00",
+                      "on-tertiary": "#460700",
+                      "on-secondary-fixed-variant": "#3e32d5",
+                      "tertiary-fixed": "#ff937b",
+                      "on-secondary": "#120076",
+                      "surface": "#0c0e12",
+                      "surface-container": "#171a1e",
+                      "inverse-surface": "#f8f9fe",
+                      "on-primary": "#5f4200",
+                      "tertiary-fixed-dim": "#ff7c5f",
+                      "outline": "#73757a",
+                      "on-error-container": "#ffa8a3",
+                      "surface-tint": "#ffc964",
+                      "on-tertiary-container": "#1d0100",
+                      "on-background": "#f8f9fe",
+                      "secondary-dim": "#645efb",
+                      "on-surface": "#f8f9fe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Space Grotesk"],
+                      "body": ["Manrope"],
+                      "label": ["Space Grotesk"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #0c0e12; color: #f8f9fe; overflow-x: hidden; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .glass { background: rgba(23, 26, 30, 0.4); backdrop-filter: blur(24px); border: 1px solid rgba(148, 146, 255, 0.05); }
+        .gold-gradient { background: linear-gradient(135deg, #ffc964 0%, #fcb812 100%); }
+        .gold-text { background: linear-gradient(135deg, #ffc964 0%, #fcb812 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .mesh-bg { background-image: radial-gradient(at 0% 0%, hsla(23,89%,70%,0.05) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(242,100%,79%,0.05) 0, transparent 50%); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+  @keyframes waveform-pulse {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.5); }
+  }
+  .waveform-bar {
+    transform-origin: center;
+    animation: waveform-pulse infinite ease-in-out;
+  }
+  .bar-1 { animation-duration: 1.2s; animation-delay: 0.1s; }
+  .bar-2 { animation-duration: 0.8s; animation-delay: 0.3s; }
+  .bar-3 { animation-duration: 1.5s; animation-delay: 0.0s; }
+  .bar-4 { animation-duration: 0.6s; animation-delay: 0.2s; }
+  .bar-5 { animation-duration: 1.3s; animation-delay: 0.4s; }
+  .bar-6 { animation-duration: 0.9s; animation-delay: 0.1s; }
+  .bar-7 { animation-duration: 1.4s; animation-delay: 0.3s; }
+</style></head>
+<body class="selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#0c0e12]/60 backdrop-blur-xl transition-all duration-300">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+    <div class="flex items-center gap-3">
+      <img id="brand-logo" src="/Users/navneetraj/Downloads/Revonn OS logo.png" alt="Revonn logo" class="w-12 h-12 rounded-full"/>
+      <div>
+        <div class="text-2xl font-bold tracking-tighter text-[#ffc964] font-['Space_Grotesk']" data-en="REVONN" data-hi="रेवोन">REVONN</div>
+        <div class="text-xs text-[#ffc964] font-['Space_Grotesk']" data-en="Built to power" data-hi="शक्ति के लिए बनाया गया">Built to power</div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <!-- language toggle -->
+      <div class="flex items-center bg-surface-container-high rounded-full p-1" id="lang-toggle">
+        <button class="px-3 py-1 rounded-full text-sm font-bold bg-transparent" id="lang-en" aria-pressed="true">EN</button>
+        <button class="px-3 py-1 rounded-full text-sm font-bold bg-transparent" id="lang-hi" aria-pressed="false">हिन्दी</button>
+      </div>
+
+      <!-- ...existing right-side nav content... -->
+    </div>
+  </div>
+</nav>
+<main class="mesh-bg">
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+<div class="z-10">
+<span class="inline-block bg-surface-container-high px-4 py-1.5 rounded-full text-xs font-label uppercase tracking-widest text-primary mb-6 border border-primary/20">The First Voice-Native OS</span>
+<h1 class="text-6xl md:text-8xl font-headline font-bold leading-[0.9] tracking-tighter mb-8">
+                        Run Your Entire <br/> <span class="gold-text">Business by Voice</span>
+</h1>
+<p class="text-xl text-on-surface-variant max-w-xl mb-12 leading-relaxed">
+                        The unified intelligence system that connects billing, inventory, and finance into a single, conversation-driven engine. Built for the high-velocity Indian enterprise.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary-container px-10 py-5 rounded-full font-bold text-lg hover:shadow-[0_0_40px_rgba(255,201,100,0.3)] transition-all">Get Early Access</button>
+<button class="border border-outline-variant px-10 py-5 rounded-full font-bold text-lg hover:bg-surface-variant transition-all flex items-center gap-3">
+<span class="material-symbols-outlined">play_circle</span> Watch Film
+                        </button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="relative glass rounded-xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-700">
+<img class="w-full h-auto opacity-90" data-alt="premium 3D dark mode dashboard interface showing financial charts and neural network data visualizations in gold and black" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDAUcTLGYGq0k-yRqflS857_0IxTGbSLWjx33ZyjVltxhP8iGCfbkLMyL8Pii5jM-3RYUoOP24be25VyjHRN7DVdxFohNoaeFuqmUh_VzQDsEsZUC5SNpGmlhENxnKm0wGwwuI6bcsYRveWp0CI3lqawTo2-gLUxqrgNt2KR7S6I9CsI4zTQHA2gjtmJHbToJxARDtWJSVk8UfmIksyzv5MAybFcb64210mbNUQ1nvAFB-Kxm76QvJ-8qLB34vCAhjwPnWJpCrfIY"/>
+<div class="absolute bottom-8 right-8 glass p-6 rounded-lg border-primary/20 flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-weight="fill">mic</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-tighter">Current Voice Command</p>
+<p class="text-lg font-headline font-bold">"Generate GST report for Q3..."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Problem -->
+<section class="py-32 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid md:grid-cols-3 gap-12 items-end">
+<div class="md:col-span-2">
+<h2 class="text-4xl md:text-6xl font-headline font-bold tracking-tight mb-8">Stop fighting your tools. <br/><span class="text-outline">Start leading your team.</span></h2>
+</div>
+<p class="text-on-surface-variant text-lg mb-8 leading-relaxed">Modern business tools are broken—siloed data, manual entry, and friction at every step. Revonn removes the barrier between intention and action.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+<div class="p-10 rounded-xl bg-surface-container-low border border-white/5">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6">link_off</span>
+<h3 class="text-xl font-bold mb-4">Siloed Applications</h3>
+<p class="text-on-surface-variant">Your CRM doesn't talk to your Billing. Your Billing doesn't know your Inventory. Chaos is the default.</p>
+</div>
+<div class="p-10 rounded-xl bg-surface-container-low border border-white/5">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6">edit_note</span>
+<h3 class="text-xl font-bold mb-4">Manual Drudgery</h3>
+<p class="text-on-surface-variant">Hours wasted on Excel sheets that are outdated the moment they are saved. Human error is inevitable.</p>
+</div>
+<div class="p-10 rounded-xl bg-surface-container-low border border-white/5">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6">timer_off</span>
+<h3 class="text-xl font-bold mb-4">Reactive Decisions</h3>
+<p class="text-on-surface-variant">Knowing you ran out of stock 2 days after the sale. Decisions made on gut feeling, not live data.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- The Core: Unified System -->
+<section class="py-32 relative">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-24">
+<h2 class="text-5xl font-headline font-bold mb-6">The Central Intelligence Agency <br/> <span class="gold-text">For Your Business</span></h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto text-lg">One core engine. Every department perfectly synchronized.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="md:col-span-2 md:row-span-2 glass rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start mb-12">
+<span class="bg-primary/10 text-primary p-4 rounded-full material-symbols-outlined text-4xl">payments</span>
+<span class="text-primary text-xs font-label">MODULE 01</span>
+</div>
+<h3 class="text-3xl font-headline font-bold mb-4">Smart Billing</h3>
+<p class="text-on-surface-variant">GST compliant, high-speed invoicing with automated payment follow-ups.</p>
+</div>
+<img class="mt-8 rounded-lg opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="clean minimal interface showing a golden receipt and sleek invoice graphics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF8zkwZTkeGDXKG5PXLHZFXt6eejo6AaTqk46CHekX5oAOzFIeui8HXve9RP_b9J1jwRlNtnaTCucndAE6OyByeLCqL28OOjVT7pBiDNfxQMlidbmctdnN3rjQ1wxFdHZgrlQV8gUxf8EOUCHS9_IJhUEtHnf5W6MvbwhpQnQgm1yDmzyWyJ0Cg4PY6RU6da7y4LDO1kBzU3lWkN4Jo0tNVQgwvX2wFzHHdkBFu-Ddfyvr0BaISW2GfAyDRvQTWePGtpo3ixcQaXA"/>
+</div>
+<div class="glass rounded-xl p-8 flex flex-col justify-between">
+<span class="material-symbols-outlined text-secondary text-3xl mb-6">inventory_2</span>
+<h3 class="text-xl font-bold mb-2">Live Inventory</h3>
+<p class="text-sm text-on-surface-variant">Real-time tracking across multiple warehouses with predictive restock.</p>
+</div>
+<div class="glass rounded-xl p-8 flex flex-col justify-between">
+<span class="material-symbols-outlined text-secondary text-3xl mb-6">group</span>
+<h3 class="text-xl font-bold mb-2">Omni-CRM</h3>
+<p class="text-sm text-on-surface-variant">Know every customer's history, preference, and lifetime value instantly.</p>
+</div>
+<div class="md:col-span-2 glass rounded-xl p-8 flex items-center gap-12">
+<div class="flex-1">
+<span class="material-symbols-outlined text-primary text-3xl mb-6">account_balance</span>
+<h3 class="text-2xl font-headline font-bold mb-2">Finance Engine</h3>
+<p class="text-on-surface-variant">Ledgers, cash flow, and tax reports generated in seconds. Not days.</p>
+</div>
+<div class="hidden md:block w-48 h-32 bg-surface-container-high rounded-lg border border-white/5 p-4 overflow-hidden">
+<div class="space-y-2">
+<div class="h-2 w-full bg-primary/20 rounded"></div>
+<div class="h-2 w-3/4 bg-primary/20 rounded"></div>
+<div class="h-2 w-1/2 bg-primary/20 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Voice Mode Section -->
+<section class="py-40 bg-[#000] relative overflow-hidden">
+<div class="absolute inset-0 opacity-20">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-primary/30 rounded-full animate-pulse"></div>
+</div>
+<div class="max-w-7xl mx-auto px-8 relative z-10 text-center">
+<span class="text-primary font-label uppercase tracking-widest text-sm mb-8 block">Revolutionary Interface</span>
+<h2 class="text-6xl md:text-8xl font-headline font-bold mb-16 tracking-tighter">Voice is the <span class="gold-text">New UI</span></h2>
+<div class="max-w-2xl mx-auto mb-20">
+<div class="relative py-20 flex justify-center items-center">
+<!-- Waveform Mockup -->
+<div class="flex items-center gap-1.5 h-32">
+<div class="w-1.5 bg-primary/40 h-8 rounded-full waveform-bar bar-1"></div>
+<div class="w-1.5 bg-primary/60 h-16 rounded-full waveform-bar bar-2"></div>
+<div class="w-1.5 bg-primary/80 h-24 rounded-full waveform-bar bar-3"></div>
+<div class="w-2.5 bg-primary h-32 rounded-full shadow-[0_0_20px_#ffc964] waveform-bar bar-4"></div>
+<div class="w-1.5 bg-primary/80 h-24 rounded-full waveform-bar bar-5"></div>
+<div class="w-1.5 bg-primary/60 h-16 rounded-full waveform-bar bar-6"></div>
+<div class="w-1.5 bg-primary/40 h-8 rounded-full waveform-bar bar-7"></div>
+</div>
+</div>
+<div class="bg-surface-container p-8 rounded-2xl border border-primary/20 text-left">
+<p class="text-primary/60 font-label text-xs mb-2">VOICE COMMAND DETECTED</p>
+<p class="text-2xl font-headline font-medium italic">"Ravi ke naam se bill bana do, 5 pet botal mineral water add karke."</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-6 rounded-xl border border-white/5 bg-white/5">
+<p class="text-on-surface-variant italic">"Aaj ki total sale kitni hai?"</p>
+</div>
+<div class="p-6 rounded-xl border border-white/5 bg-white/5">
+<p class="text-on-surface-variant italic">"Warehouse 2 mein kitna stock bacha hai?"</p>
+</div>
+<div class="p-6 rounded-xl border border-white/5 bg-white/5">
+<p class="text-on-surface-variant italic">"Remind me to call Gupta ji for payment tomorrow."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Insights & Growth -->
+<section class="py-32 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid lg:grid-cols-2 gap-20 items-center">
+<div class="relative order-2 lg:order-1">
+<div class="space-y-6">
+<!-- Floating Card 1 -->
+<div class="glass p-6 rounded-2xl border-l-4 border-l-primary max-w-sm translate-x-12 hover:translate-x-16 transition-transform">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary">warning</span>
+<h4 class="font-bold">Stock Risk Alert</h4>
+</div>
+<p class="text-sm text-on-surface-variant">Wheat flour (10kg) will run out in 3 days. Order 50 more units now?</p>
+<button class="mt-4 text-primary text-xs font-bold uppercase tracking-wider">Confirm Order</button>
+</div>
+<!-- Floating Card 2 -->
+<div class="glass p-6 rounded-2xl border-l-4 border-l-secondary max-w-sm hover:-translate-x-4 transition-transform">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-secondary">trending_up</span>
+<h4 class="font-bold">Growth Opportunity</h4>
+</div>
+<p class="text-sm text-on-surface-variant">Top 50 customers haven't visited in 15 days. Launch WhatsApp comeback campaign?</p>
+<button class="mt-4 text-secondary text-xs font-bold uppercase tracking-wider">Launch Campaign</button>
+</div>
+<!-- Floating Card 3 -->
+<div class="glass p-6 rounded-2xl border-l-4 border-l-tertiary max-w-sm translate-x-16 hover:translate-x-20 transition-transform">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-tertiary">request_quote</span>
+<h4 class="font-bold">Dues Overdue</h4>
+</div>
+<p class="text-sm text-on-surface-variant">₹45,000 pending from Sharma Traders. Send automated reminder?</p>
+<button class="mt-4 text-tertiary text-xs font-bold uppercase tracking-wider">Send via WhatsApp</button>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="text-5xl font-headline font-bold mb-8">Intelligence That <br/> <span class="gold-text">Forces Growth</span></h2>
+<p class="text-lg text-on-surface-variant leading-relaxed mb-8">
+                            Most tools just store data. Revonn weaponizes it. Our AI engine scans your business 24/7 to find hidden leaks, predict stockouts, and identify high-value upsell opportunities.
+                        </p>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded">check</span>
+<div>
+<p class="font-bold">Automated Upsell Suggestions</p>
+<p class="text-sm text-on-surface-variant">Increase average order value by 22% with AI-driven cross-selling.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded">check</span>
+<div>
+<p class="font-bold">Smart Debt Collection</p>
+<p class="text-sm text-on-surface-variant">Reduce credit cycles with polite, persistent, automated reminders.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Built for India -->
+<section class="py-32 bg-background border-y border-white/5">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20">
+<h2 class="text-5xl font-headline font-bold mb-6 italic">Built for the <span class="gold-text">Bharat</span> Enterprise</h2>
+<p class="text-on-surface-variant">Tailored for the unique workflows of Indian business culture.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-surface-container rounded-2xl p-8 border border-white/5 hover:border-primary/20 transition-colors">
+<h3 class="text-xl font-bold mb-4">Hinglish Natural Voice</h3>
+<p class="text-on-surface-variant mb-8 text-sm">Speak like you normally do. Our NLP understands Hinglish, regional accents, and local business terminology perfectly.</p>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">translate</span>
+<span class="text-xs font-label">22+ REGIONAL LANGUAGES</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-2xl p-8 border border-white/5 hover:border-primary/20 transition-colors">
+<h3 class="text-xl font-bold mb-4">WhatsApp-First Workflow</h3>
+<p class="text-on-surface-variant mb-8 text-sm">Send invoices, reports, and payment links where your customers live. No more "Check your email" friction.</p>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-xs font-label">NATIVE WHATSAPP INTEGRATION</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-2xl p-8 border border-white/5 hover:border-primary/20 transition-colors">
+<h3 class="text-xl font-bold mb-4">Credit (Udhaar) Master</h3>
+<p class="text-on-surface-variant mb-8 text-sm">Managing dues shouldn't be hard. Advanced credit limit controls and historical risk assessment for every client.</p>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-xs font-label">RISK-FIRST CREDIT ENGINE</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Downloads Section -->
+<section class="py-32">
+<div class="max-w-7xl mx-auto px-8">
+<div class="glass rounded-3xl p-12 md:p-20 overflow-hidden relative">
+  <div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+    <img class="w-full h-full object-cover" data-alt="sleek modern smartphone showing business data" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrBbKZ376eIojW8smMWOLv_DCY2W4Uzzk91naLD_PuPZDaPa0zRuYumuR7A2POICFRk8N7U4iOMWD30tYDntEbSb-CtzOXx2jGqTroxdc_3EBUcqaF_B0EDypxZmipJfuksM8N6xd_8XrP3G33ZNtHBoRWb9N_j10izCHGhOK4_ucORlPzc3gAuoIdrmOFygze9ItWsBpCdFSoMFbdhx4DttXQmThHfc9Z3nyThlLZZNTygMwg1L-sJKICOAzRjBBE62-wLF2Ymug"/>
+  </div>
+  <div class="relative z-10 max-w-2xl">
+    <h2 class="text-5xl font-headline font-bold mb-8" data-en="Take Your Business Everywhere." data-hi="अपने व्यवसाय को हर जगह लें।">Take Your Business <br/> Everywhere.</h2>
+    <p class="text-lg text-on-surface-variant mb-12" data-en="Seamlessly sync across your phone, tablet, and desktop. Premium performance on any device." data-hi="अपने फोन, टैबलेट और डेस्कटॉप पर सहजता से सिंक करें। किसी भी डिवाइस पर प्रीमियम प्रदर्शन।">Seamlessly sync across your phone, tablet, and desktop. Premium performance on any device.</p>
+
+    <div class="flex flex-wrap gap-6 mb-12 items-center">
+      <a href="#" class="flex items-center gap-4 bg-surface-container-highest px-6 py-3 rounded-xl cursor-pointer hover:bg-surface-bright transition-colors" onclick="comingSoon(event)">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-7"/>
+        <div>
+          <p class="text-[10px] font-label uppercase" data-en="GET IT ON" data-hi="प्राप्त करें">GET IT ON</p>
+          <p class="font-bold" data-en="Google Play" data-hi="गूगल प्ले">Google Play</p>
+        </div>
+      </a>
+
+      <a href="#" class="flex items-center gap-4 bg-surface-container-highest px-6 py-3 rounded-xl cursor-pointer hover:bg-surface-bright transition-colors" onclick="comingSoon(event)">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" class="h-7"/>
+        <div>
+          <p class="text-[10px] font-label uppercase" data-en="DOWNLOAD ON THE" data-hi="डाउनलोड करें">DOWNLOAD ON THE</p>
+          <p class="font-bold" data-en="App Store" data-hi="ऐप स्टोर">App Store</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="w-24 h-24 bg-white p-2 rounded-lg">
+        <div class="w-full h-full bg-slate-100 flex items-center justify-center text-black font-bold text-xs text-center">QR CODE</div>
+      </div>
+      <p class="text-sm text-on-surface-variant" data-en="Scan to download the mobile app instantly." data-hi="मोबाइल ऐप तुरंत डाउनलोड करने के लिए स्कैन करें।">Scan to download the <br/> mobile app instantly.</p>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- Careers -->
+<section class="py-32 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-12">
+  <div>
+    <h2 class="text-4xl font-headline font-bold mb-4" data-en="Join the Revolution" data-hi="क्रांति में शामिल हों">Join the Revolution</h2>
+    <p class="text-on-surface-variant max-w-md" data-en="We're building the future of enterprise software. Join Revonn's team of visionaries and engineers." data-hi="हम एंटरप्राइज़ सॉफ़्टवेयर का भविष्य बना रहे हैं। रेवोन की विज़नरी और इंजीनियरों की टीम में शामिल हों।">We're building the future of enterprise software. Join Revonn's team of visionaries and engineers.</p>
+  </div>
+  <a href="https://chat.whatsapp.com/CVQT3lET2Al1RVi83dG15L?mode=gi_t" target="_blank" rel="noopener noreferrer" class="border border-primary text-primary px-12 py-5 rounded-full font-bold hover:bg-primary hover:text-on-primary transition-all inline-block" data-en="View Openings" data-hi="खुली पद देखें">View Openings</a>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-32">
+<div class="max-w-3xl mx-auto px-8">
+  <h2 class="text-4xl font-headline font-bold mb-16 text-center" data-en="Common Questions" data-hi="सामान्य प्रश्न">Common Questions</h2>
+  <div class="space-y-4">
+
+    <!-- 1) Ensure "What is Revonn?" is first -->
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="What is Revonn?" data-hi="रेवोन क्या है?">What is Revonn?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Revonn is the AI Business Operating System for India — built to help businesses run billing, inventory, customer management, dues, finance, and insights from one connected platform. It is designed not just to record business activity, but to help owners act faster, work smarter, and grow with confidence." data-hi="रेवोन भारत के लिए AI बिजनेस ऑपरेटिंग सिस्टम है — जो व्यापारों को बिलिंग, इन्वेंटरी, ग्राहक प्रबंधन, बकाया, वित्त और इनसाइट्स को एक जुड़ी हुई प्लेटफ़ॉर्म से चलाने में मदद करने के लिए बनाया गया है। इसे केवल व्यापार गतिविधि रिकॉर्ड करने के लिए नहीं बनाया गया है, बल्कि मालिकों को तेज़ी से कार्रवाई करने, स्मार्ट काम करने और आत्मविश्वास के साथ बढ़ने में मदद करने के लिए डिजाइन किया गया है।">Revonn is the AI Business Operating System for India — built to help businesses run billing, inventory, customer management, dues, finance, and insights from one connected platform. It is designed not just to record business activity, but to help owners act faster, work smarter, and grow with confidence.</div>
+    </details>
+
+    <!-- existing original FAQs (kept) -->
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="Is Revonn secure for my financial data?" data-hi="क्या रेवोन मेरे वित्तीय डेटा के लिए सुरक्षित है?">Is Revonn secure for my financial data?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Revonn uses enterprise-grade 256-bit encryption and multi-region backups. We are ISO 27001 and GDPR compliant, ensuring your data remains private and protected." data-hi="रेवोन एंटरप्राइज़-ग्रेड 256-बिट एन्क्रिप्शन और मल्टी-रीजन बैकअप का उपयोग करता है। हम ISO 27001 और GDPR अनुपालन वाले हैं, जो सुनिश्चित करते हैं कि आपका डेटा निजी और सुरक्षित बना रहे।">Revonn uses enterprise-grade 256-bit encryption and multi-region backups. We are ISO 27001 and GDPR compliant, ensuring your data remains private and protected.</div>
+    </details>
+
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="Do I need an internet connection to use Voice?" data-hi="क्या वॉइस उपयोग करने के लिए मुझे इंटरनेट कनेक्शन चाहिए?">Do I need an internet connection to use Voice?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Most core voice processing requires a connection for real-time AI analysis. However, basic billing and offline data entry are supported and will sync once back online." data-hi="अधिकांश मुख्य वॉइस प्रोसेसिंग रीयल-टाइम AI विश्लेषण के लिए कनेक्शन मांगती है। हालाँकि, बेसिक बिलिंग और ऑफ़लाइन डेटा एंट्री समर्थित है और वे वापस ऑनलाइन होने पर सिंक हो जाएँगी।">Most core voice processing requires a connection for real-time AI analysis. However, basic billing and offline data entry are supported and will sync once back online.</div>
+    </details>
+
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="Can I migrate my data from Tally or Excel?" data-hi="क्या मैं अपना डेटा Tally या Excel से माइग्रेट कर सकता हूँ?">Can I migrate my data from Tally or Excel?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Absolutely. We have built-in importers for Tally, Busy, and custom Excel sheets. Our team also provides assisted migration for premium enterprise clients." data-hi="बिलकुल। हमारे पास Tally, Busy और कस्टम Excel शीट्स के लिए बिल्ट-इन इम्पोर्टर हैं। हमारी टीम प्रीमियम एंटरप्राइज़ क्लाइंट्स के लिए असिस्टेड माइग्रेशन भी प्रदान करती है।">Absolutely. We have built-in importers for Tally, Busy, and custom Excel sheets. Our team also provides assisted migration for premium enterprise clients.</div>
+    </details>
+
+    <!-- appended new FAQs (after originals) -->
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="Does Revonn support voice commands and multiple languages?" data-hi="क्या रेवोन वॉइस कमांड और कई भाषाओं का समर्थन करता है?">Does Revonn support voice commands and multiple languages?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Yes. Revonn is built to understand natural voice and text commands in Hindi, Hinglish, English and 22+ languages so business owners can operate the system the way they naturally speak. From creating bills to checking sales, updating stock, and tracking dues, Revonn turns everyday language into business action." data-hi="हाँ। रेवोन को प्राकृतिक वॉइस और टेक्स्ट कमांड्स को समझने के लिए बनाया गया है—हिंदी, हिंग्लिश, अंग्रेज़ी और 22+ भाषाओं में ताकि व्यापारी अपनी सामान्य बोलचाल की भाषा में सिस्टम चला सकें। बिल बनाना हो, बिक्री देखना हो, स्टॉक अपडेट करना हो या बकाया ट्रैक करना हो—रेवोन रोज़मर्रा की भाषा को व्यावसायिक कार्रवाई में बदल देता है।">Yes. Revonn is built to understand natural voice and text commands in Hindi, Hinglish, English and 22+ languages so business owners can operate the system the way they naturally speak. From creating bills to checking sales, updating stock, and tracking dues, Revonn turns everyday language into business action.</div>
+    </details>
+
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="How does Revonn help businesses grow?" data-hi="रेवोन व्यवसायों को कैसे बढ़ने में मदद करता है?">How does Revonn help businesses grow?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Revonn goes beyond management by helping owners spot opportunities and problems early. It can highlight pending dues, identify low-stock and slow-moving products, surface customer follow-up opportunities, and help businesses make faster, smarter decisions that support revenue growth." data-hi="रेवोन केवल प्रबंधन से आगे बढ़कर मालिकों को जल्दी मौके और समस्याएँ पहचानने में मदद करता है। यह लंबित बकाया को हाइलाइट कर सकता है, कम स्टॉक और धीमी बिक्री वाले उत्पादों की पहचान कर सकता है, ग्राहक फॉलो-अप के अवसर दिखा सकता है, और व्यवसायों को तेज़ व स्मार्ट निर्णय लेने में मदद करता है जो राजस्व वृद्धि को समर्थन देते हैं।">Revonn goes beyond management by helping owners spot opportunities and problems early. It can highlight pending dues, identify low-stock and slow-moving products, surface customer follow-up opportunities, and help businesses make faster, smarter decisions that support revenue growth.</div>
+    </details>
+
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="Can Revonn handle billing, stock, customer records, and dues together?" data-hi="क्या रेवोन बिलिंग, स्टॉक, ग्राहक रिकॉर्ड और बकाया एक साथ संभाल सकता है?">Can Revonn handle billing, stock, customer records, and dues together?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Yes. Revonn connects the key parts of the business into one flow, so updates across billing, stock, customer records, and dues stay aligned. This reduces manual work and gives the owner a clearer picture of the business at all times." data-hi="हाँ। रेवोन व्यापार के प्रमुख हिस्सों को एक फ़्लो में जोड़ता है, ताकि बिलिंग, स्टॉक, ग्राहक रिकॉर्ड और बकाया में होने वाले अपडेट्स सिंक रहे। इससे मैन्युअल काम कम होता है और मालिक को हमेशा व्यवसाय की स्पष्ट तस्वीर मिलती है।">Yes. Revonn connects the key parts of the business into one flow, so updates across billing, stock, customer records, and dues stay aligned. This reduces manual work and gives the owner a clearer picture of the business at all times.</div>
+    </details>
+
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="Is Revonn made for Indian businesses?" data-hi="क्या रेवोन भारतीय व्यवसायों के लिए बनाया गया है?">Is Revonn made for Indian businesses?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Absolutely. Revonn is built around how Indian businesses actually work — with multilingual usage, practical workflows, WhatsApp-style communication, due tracking, and natural business language. It is designed to feel simple, useful, and familiar even for non-technical users." data-hi="बिलकुल। रेवोन को इस तरह से बनाया गया है कि यह भारतीय व्यवसायों के वास्तविक काम करने के तरीके के अनुसार हो—बहु-भाषाई उपयोग, व्यावहारिक वर्कफ़्लो, व्हाट्सएप-स्टाइल कम्युनिकेशन, बकाया ट्रैकिंग और प्राकृतिक बिजनेस भाषा के साथ। इसे गैर-टेक्निकल उपयोगकर्ताओं के लिए भी सरल, उपयोगी और परिचित महसूस कराने के लिए डिज़ाइन किया गया है।">Absolutely. Revonn is built around how Indian businesses actually work — with multilingual usage, practical workflows, WhatsApp-style communication, due tracking, and natural business language. It is designed to feel simple, useful, and familiar even for non-technical users.</div>
+    </details>
+
+    <details class="group glass rounded-2xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-bold" data-en="Can I join Revonn’s team?" data-hi="क्या मैं रेवोन की टीम में शामिल हो सकता हूँ?">Can I join Revonn’s team?</span>
+        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 text-on-surface-variant text-sm" data-en="Yes. Revonn is built for ambitious people who want to grow with a bold company shaping the future of business software in India. For the right sales talent, opportunities can include a starting base pay of ₹40,000–₹50,000 along with strong upside for high performers who want to earn well and grow fast." data-hi="हाँ। रेवोन महत्वाकांक्षी लोगों के लिए बनाया गया है जो भारत में व्यावसायिक सॉफ़्टवेयर के भविष्य को आकार देने वाली एक साहसी कंपनी के साथ बढ़ना चाहते हैं। उपयुक्त सेल्स प्रतिभा के लिए अवसरों में ₹40,000–₹50,000 की प्रारंभिक बेस पे और उच्च प्रदर्शन करने वालों के लिए मजबूत अपसाइड शामिल हो सकता है।">Yes. Revonn is built for ambitious people who want to grow with a bold company shaping the future of business software in India. For the right sales talent, opportunities can include a starting base pay of ₹40,000–₹50,000 along with strong upside for high performers who want to earn well and grow fast.</div>
+    </details>
+
+  </div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#0c0e12] w-full border-t border-[#9492ff]/10">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-7xl mx-auto px-8 py-16">
+    <div class="space-y-6">
+      <div class="font-['Space_Grotesk'] text-xl font-bold text-[#ffc964]">REVONN</div>
+      <p class="text-slate-500 text-sm leading-relaxed">The OS for the next generation of Indian enterprises.</p>
+      <div class="flex gap-4">
+        <span class="material-symbols-outlined text-slate-500 hover:text-primary cursor-pointer">public</span>
+        <span class="material-symbols-outlined text-slate-500 hover:text-primary cursor-pointer">alternate_email</span>
+        <span class="material-symbols-outlined text-slate-500 hover:text-primary cursor-pointer">phone_iphone</span>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="font-bold text-[#ffc964] mb-6">Contact</h4>
+      <ul class="space-y-4 text-sm text-slate-500 font-['Manrope']">
+        <li>support@revonn.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-8 pb-12">
+    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+      <p class="text-slate-500 text-sm">© 2026 Revonn AI. Orchestrating the future of Indian Enterprise.</p>
+      <div class="flex gap-8">
+        <span class="text-slate-500 text-xs">ISO 27001</span>
+        <span class="text-slate-500 text-xs">GDPR COMPLIANT</span>
+        <span class="text-slate-500 text-xs">SOC2 TYPE II</span>
+      </div>
+    </div>
+  </div>
+</footer>
+</body></html>
